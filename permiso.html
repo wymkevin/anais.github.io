@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Puedo ir contigo?</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-image: url('https://i.pinimg.com/236x/17/3c/48/173c48be8ce4b523d7d633f647e4a2c3.jpg');
+            background-size: cover;
+            color: white;
+        }
+
+        h1 {
+            margin-top: 50px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        #message {
+            margin-top: 20px;
+            font-size: 1.8em;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            min-height: 50px; 
+        }
+
+        button {
+            padding: 15px 30px;
+            margin: 20px;
+            font-size: 1.2em;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        #btn-si {
+            background-color: #28a745;
+        }
+
+        #btn-no {
+            background-color: #dc3545;
+        }
+
+        .emoji {
+            position: absolute;
+            font-size: 2em;
+            animation: float 3s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <h1>¿Puedo ir contigo hasta la 24 de diciembre? ❤️</h1>
+    <div id="message"></div>
+    <button id="btn-si">Sí</button>
+    <button id="btn-no">No</button>
+
+    <script>
+        const emojis = {
+            si: ['😊', '😍', '🥰', '🎉', '✨'],
+            no: ['😢', '😭', '💔', '🥺', '😞']
+        };
+
+        const messageDiv = document.getElementById('message');
+
+        function createEmojiEffect(type) {
+            for (let i = 0; i < 30; i++) {
+                const emoji = document.createElement('div');
+                emoji.classList.add('emoji');
+                emoji.innerText = emojis[type][Math.floor(Math.random() * emojis[type].length)];
+                emoji.style.left = `${Math.random() * 100}%`;
+                emoji.style.top = `${Math.random() * 100}%`;
+                emoji.style.animationDuration = `${2 + Math.random() * 3}s`;
+                emoji.style.opacity = 0.8;
+                document.body.appendChild(emoji);
+
+                setTimeout(() => emoji.remove(), 5000);
+            }
+        }
+
+        document.getElementById('btn-si').addEventListener('click', () => {
+            messageDiv.innerHTML = 'Te doy las gracias, mi reina, 🥰❤️🎉';
+            createEmojiEffect('si');
+        });
+
+        document.getElementById('btn-no').addEventListener('click', () => {
+            messageDiv.innerHTML = '¿Por qué no? 😢💔🥺';
+            createEmojiEffect('no');
+        });
+    </script>
+</body>
+</html>
